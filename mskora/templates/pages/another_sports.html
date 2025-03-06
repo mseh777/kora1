@@ -1,0 +1,183 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>الرياضات الأخرى | أحدث الأخبار والتغطيات الرياضية | أهلا كورة</title>
+
+    <meta name="description" content="تابع آخر الأخبار والتغطيات الحصرية لمختلف الرياضات مثل كرة السلة، التنس، الفورمولا 1، والمزيد عبر موقع أهلا كورة.">
+    <meta name="keywords" content="الرياضات الأخرى, كرة السلة, التنس, الفورمولا 1, أولمبياد, بطولات رياضية, رياضة عالمية, أخبار الرياضة">
+    <meta name="author" content="أهلا كورة">
+
+    <meta property="og:title" content="الرياضات الأخرى | أحدث الأخبار والتغطيات الرياضية | أهلا كورة">
+    <meta property="og:description" content="تابع آخر الأخبار والتغطيات الحصرية لمختلف الرياضات مثل كرة السلة، التنس، الفورمولا 1، والمزيد عبر موقع أهلا كورة.">
+    <meta property="og:image" content="https://ahlankora.com/static/images/logo.png">
+    <meta property="og:url" content="{{ request.build_absolute_uri }}">
+    <meta property="og:type" content="website">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="الرياضات الأخرى | أحدث الأخبار والتغطيات الرياضية | أهلا كورة">
+    <meta name="twitter:description" content="تابع آخر الأخبار والتغطيات الحصرية لمختلف الرياضات مثل كرة السلة، التنس، الفورمولا 1، والمزيد عبر موقع أهلا كورة.">
+    <meta name="twitter:image" content="https://ahlankora.com/static/images/logo.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.rtl.min.css' %}">
+    <script src="{% static 'js/jquery-3.6.0.min.js' %}"></script>
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "CollectionPage",
+            "name": "الرياضات الأخرى | أحدث الأخبار والتغطيات الرياضية | أهلا كورة",
+            "description": "تابع آخر الأخبار والتغطيات الحصرية لمختلف الرياضات مثل كرة السلة، التنس، الفورمولا 1، والمزيد عبر موقع أهلا كورة.",
+            "url": "{{ request.build_absolute_uri }}",
+            "image": "https://ahlankora.com/static/images/logo.png",
+            "publisher": {
+                "@type": "Organization",
+                "name": "أهلا كورة",
+                "url": "https://ahlankora.com",
+                "logo": {
+                    "@type": "ImageObject",
+                    "url": "https://ahlankora.com/static/images/logo.png"
+                }
+            },
+            "hasPart": [
+                {% for post in another_spo %}
+                {
+                    "@type": "Article",
+                    "headline": "{{ post.title }}",
+                    "url": "{% url 'post' id=post.id slug=post.slug %}",
+                    "image": "{% if post.img %}{{ post.img.url }}{% else %}error{% endif %}",
+                    "datePublished": "{{ post.publish_date|date:'c' }}",
+                    "author": {
+                        "@type": "Organization",
+                        "name": "أهلا كورة"
+                    }
+                }{% if not forloop.last %},{% endif %}
+                {% endfor %}
+            ]
+        }
+        </script>
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <style>
+
+
+
+        .related-post-card {
+            height: 100%;
+            max-width: 100%;
+        }
+
+        .related-post-card img {
+            height: 150px;
+            object-fit: cover;
+        }
+
+        .related-post-card .card-body {
+            padding: 10px;
+        }
+
+        .related-post-card .card-title {
+            font-size: 16px;
+        }
+
+        .related-post-card .card-text {
+            font-size: 14px;
+        }
+        .custom-card {
+            position: relative;
+            text-decoration: none;
+        }
+
+        .custom-card .card-title {
+            padding: 1rem;
+            border-radius: 10px;
+            transition: all 0.3s ease-in-out;
+        }
+
+
+        .custom-card:hover .card-title {
+            filter: brightness(70%);
+            color: gray;
+        }
+
+        .custom-card:hover img {
+            filter: brightness(70%);
+            transition: all 0.3s ease-in-out;
+        }
+
+        .custom-card a {
+            text-decoration: none;
+            color: black;
+        }
+
+        a:hover {
+            color: gray;
+        }
+
+        .cs-card-img-top {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+        }
+
+
+        
+
+    </style>
+
+</head>
+<body>
+
+    {% include 'navbar.html' %}
+
+        <div class="container mt-4">
+            <h3 class="text-center">مواضيع ذات صلة</h3>
+            <div class="row">
+                {% for post in another_spo %}
+                <div class="custom-card col-md-4 mb-4">
+                    <a href="{% url 'post' id=post.id slug=post.slug %}">
+                        <div class="card related-post-card">
+                           
+                            <img src="{% if post.img %}{{ post.img.url }}{% else %}error{% endif %}" 
+                            class="cs-card-img-top" 
+                            alt="{{ post.title }}" 
+                            loading="lazy">
+                       
+                           
+                           
+                           
+                           
+                           
+                           
+                            <div class="card-body">
+                                <h5 class="card-title">{{ post.title }}</h5>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                {% empty %}
+                <p class="text-center">لا توجد مواضيع ذات صلة.</p>
+                {% endfor %}
+                
+            </div>
+        </div> 
+        {% include 'footer.html' %}
+
+<script src="{% static 'js/popper.min.js' %}"></script>
+<script src="{% static 'js/bootstrap.min.js' %}"></script>
+</body>
+</html>

@@ -1,0 +1,135 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ar">
+
+<head>
+    <meta name="description" content="تواصل معنا عبر أهلا كورة للاستفسارات، الاقتراحات، أو الشكاوى. نحن هنا لمساعدتك.">
+    <meta name="keywords" content="اتصل بنا, تواصل معنا, دعم العملاء, أهلا كورة">
+    <meta name="author" content="AhlanKora.com">
+
+    <meta property="og:title" content="اتصل بنا | أهلا كورة">
+    <meta property="og:description" content="تواصل معنا عبر أهلا كورة للاستفسارات، الاقتراحات، أو الشكاوى. نحن هنا لمساعدتك.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.rtl.min.css' %}">
+    <script src="{% static 'js/jquery-3.6.0.min.js' %}"></script>
+    <title>contact | للتواصل معنا</title>
+
+
+
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "ContactPage",
+            "name": "اتصل بنا - أهلا كورة",
+            "description": "تواصل معنا عبر أهلا كورة لطرح استفساراتك، اقتراحاتك أو التعاون معنا.",
+            "url": "{{ request.build_absolute_uri }}",
+            "image": "https://ahlankora.com/static/images/logo.png",
+            "publisher": {
+                "@type": "Organization",
+                "name": "أهلا كورة",
+                "url": "https://ahlankora.com",
+                "logo": {
+                    "@type": "ImageObject",
+                    "url": "https://ahlankora.com/static/images/logo.png"
+                }
+            },
+            "contactPoint": {
+                "@type": "ContactPoint",
+                "telephone": "+20XXXXXXXXXX",
+                "contactType": "customer service",
+                "email": "info@ahlankora.com",
+                "areaServed": "EG",
+                "availableLanguage": ["Arabic", "English"]
+            }
+        }
+    </script>
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <style>
+
+        .card {
+            margin-top: 20px;
+            margin-bottom: 20px;
+            padding: 15px;
+        }
+
+        .card-header {
+            font-size: 1.25rem;
+            padding: 10px 15px;
+        }
+
+        .card-body {
+            padding: 20px;
+        }
+
+        .card-title {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+
+        .card-text {
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
+{% include 'navbar.html' %}
+<div class="container">
+
+    </div>
+</div>
+<div class="card bg-dark text-white mb-3" style="max-width: 100%; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+    <div class="card-header">أعلن معنا</div>
+    <div class="card-body">
+        <h5 class="card-title">لماذا تعلن على AhlanKora؟</h5>
+        <p class="card-text">
+            يوفر <strong>AhlanKora.com</strong> منصة مثالية للإعلان والوصول إلى جمهور واسع من عشاق كرة القدم. سواء كنت ترغب في الترويج لمنتج رياضي، أو خدمة متعلقة بالرياضة، فنحن نقدم لك حلولاً إعلانية فعالة.
+        </p>
+
+        <h5 class="card-title">أنواع الإعلانات المتاحة</h5>
+        <ul class="card-text">
+            <li>إعلانات بانر (Header & Sidebar).</li>
+            <li>إعلانات مدمجة داخل المقالات.</li>
+        </ul>
+
+        <h5 class="card-title">مميزات الإعلان معنا</h5>
+        <ul class="card-text">
+            <li>استهداف دقيق لجمهور كرة القدم.</li>
+            <li>معدلات ظهور ونقرات عالية.</li>
+            <li>تقارير وإحصائيات لمتابعة أداء حملتك الإعلانية.</li>
+        </ul>
+
+        <h5 class="card-title">كيفية الإعلان؟</h5>
+        <p class="card-text">
+            يمكنك التواصل معنا لمناقشة تفاصيل خطتك الإعلانية والحصول على عرض مخصص يلبي احتياجاتك التسويقية.
+        </p>
+
+        <h5 class="card-title">تواصل معنا</h5>
+        <p class="card-text">
+            لمزيد من التفاصيل حول خطط الإعلانات، يمكنك مراسلتنا عبر البريد الإلكتروني:
+            <a href="mailto:info@ahlankora.com">info@ahlankora.com</a>
+        </p>
+    </div>
+</div>
+
+{% include 'footer.html' %}
+<script src="{% static 'js/popper.min.js' %}"></script>
+<script src="{% static 'js/bootstrap.min.js' %}"></script>
+</body>
+</html>

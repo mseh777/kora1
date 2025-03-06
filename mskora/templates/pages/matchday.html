@@ -1,0 +1,147 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="جدول مباريات اليوم: {{ matchd.title }}، تابع أحدث الأخبار والنتائج مباشرة من موقع أهلا كورة.">
+    <meta name="keywords" content="مباريات اليوم, جدول المباريات, {{ matchd.title }}, الدوري المصري, كرة القدم, نتائج المباريات">
+    <meta name="author" content="أهلا كورة">
+    
+    <meta property="og:title" content="{{ matchd.title }} | مباريات اليوم | أهلا كورة">
+    <meta property="og:description" content="جدول مباريات اليوم: {{ matchd.title }}، تابع أحدث الأخبار والنتائج مباشرة من موقع أهلا كورة.">
+    <meta property="og:image" content="{% if matchd.img %}{{ matchd.img.url }}{% else %}error{% endif %}">
+    <meta property="og:url" content="{{ request.build_absolute_uri }}">
+    <meta property="og:type" content="website">
+    
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{{ matchd.title }} | مباريات اليوم | أهلا كورة">
+    <meta name="twitter:description" content="جدول مباريات اليوم: {{ matchd.title }}، تابع أحدث الأخبار والنتائج مباشرة من موقع أهلا كورة.">
+    <meta name="twitter:image" content="{% if matchd.img %}{{ matchd.img.url }}{% else %}error{% endif %}">
+
+    <title>مباريات اليوم | أهلا كورة</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.rtl.min.css' %}">
+
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "SportsEvent",
+            "name": "{{ matchd.title }}",
+            "description": "جدول مباريات اليوم: {{ matchd.title }}، تابع أحدث الأخبار والنتائج مباشرة من موقع أهلا كورة.",
+            "startDate": "{{ matchd.date|date:'c' }}",
+            "location": {
+                "@type": "Place",
+                "name": "مباريات اليوم",
+                "address": "موعد مباريات اليوم"
+            },
+            "image": "{% if matchd.img %}{{ matchd.img.url }}{% else %}error{% endif %}",
+            "organizer": {
+                "@type": "Organization",
+                "name": "أهلا كورة",
+                "url": "https://ahlankora.com"
+            }
+        }
+        </script>
+        
+
+
+
+
+
+
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .match-card {
+            border-radius: 12px;
+            overflow: hidden;
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        }
+        .match-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+        }
+        .download-btn {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 18px;
+            padding: 10px 20px;
+        }
+
+        .match-img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+            max-height: 400px;
+            }
+
+        .match-card {
+            border-radius: 12px;
+            overflow: hidden;
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        }
+
+        .match-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+        }
+
+        .download-btn {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 16px;
+            padding: 8px 15px;
+            flex-wrap: wrap;
+        }
+
+        h1 {
+            font-size: 1.75rem;
+            text-align: center;
+        }
+
+    </style>
+</head>
+<body>
+
+{% include 'navbar.html' %}
+
+<div class="container mt-4">
+
+    <h1 class="text-center mb-4 fw-bold">📅 {{matchd.title}}</h1>
+
+    <div class="row justify-content-center">
+
+        <div class="col-md-8 col-sm-12">
+            <div class="card shadow match-card">
+
+                <img src="{% if matchd.img %}{{ matchd.img.url }}{% else %}error{% endif %}" 
+                class="card-img-top match-img" 
+                alt="{{ matchd.title }}" 
+                loading="lazy">
+                
+               
+                <div class="card-body text-center">
+                    <p class="card-text">{{ matchd.content.html | safe }}</p>
+                    <a href="{% if matchd.img %}{{ matchd.img.url }}{% else %}error{% endif %}" download class="btn btn-primary download-btn">
+                        <i class="fa fa-download"></i> تحميل جدول مباريات اليوم
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% include 'footer.html' %}
+
+<script src="{% static 'js/popper.min.js' %}"></script>
+<script src="{% static 'js/bootstrap.min.js' %}"></script>
+</body>
+</html>

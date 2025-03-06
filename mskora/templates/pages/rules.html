@@ -1,0 +1,135 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta name="description" content="تعرف على قواعد استخدام موقع أهلا كورة، الشروط والأحكام، وسياسة النشر والتعليقات.">
+    <meta name="keywords" content="قواعد الاستخدام, شروط الموقع, أهلا كورة, سياسة النشر">
+    <meta name="robots" content="noindex, follow">
+    <meta property="og:title" content="القواعد والشروط | أهلا كورة">
+    <meta property="og:description" content="تعرف على قواعد استخدام موقع أهلا كورة، الشروط والأحكام، وسياسة النشر والتعليقات.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.rtl.min.css' %}">
+    <script src="{% static 'js/jquery-3.6.0.min.js' %}"></script>
+    <title>rules | سياسة الإستخدام والخصوصية</title>
+
+    <script type="application/ld+json">
+        {
+          "@context": "https://schema.org",
+          "@type": "PrivacyPolicy",
+          "name": "سياسة الاستخدام والخصوصية | أهلا كورة",
+          "description": "تعرف على قواعد استخدام موقع أهلا كورة، الشروط والأحكام، وسياسة النشر والتعليقات.",
+          "url": "{{ request.build_absolute_uri }}",
+          "publisher": {
+            "@type": "Organization",
+            "name": "أهلا كورة",
+            "url": "https://ahlankora.com",
+            "logo": {
+              "@type": "ImageObject",
+              "url": "https://ahlankora.com/static/images/logo.png"
+            },
+            "contactPoint": {
+              "@type": "ContactPoint",
+              "email": "info@ahlankora.com",
+              "contactType": "customer service",
+              "availableLanguage": ["Arabic", "English"]
+            },
+            "sameAs": [
+            "https://www.facebook.com/ahlankora",
+            "https://x.com/AhlanKora",
+            "https://www.instagram.com/ahlankora",
+            "https://www.threads.net/@ahlankora"
+            ]
+          }
+        }
+    </script>
+
+    <style>
+        /* تعديل المسافات حول الكارد */
+        .card {
+            margin-top: 20px;
+            margin-bottom: 20px;
+            padding: 15px;
+        }
+
+        /* تعديل المسافات بين النص والعناوين */
+        .card-header {
+            font-size: 1.25rem;
+            padding: 10px 15px;
+        }
+
+        .card-body {
+            padding: 20px;
+        }
+
+        .card-title {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+
+        .card-text {
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
+{% include 'navbar.html' %}
+<div class="container">
+    <div class="card bg-dark text-white mb-3" style="max-width: 100%; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+        <div class="card-header">سياسة الإستخدام والخصوصية</div>
+        <div class="card-body">
+            <h5 class="card-title">مقدمة</h5>
+            <p class="card-text">
+                نحن في <strong>AhlanKora.com</strong> نحرص على حماية خصوصيتك أثناء استخدامك لموقعنا، ونوضح لك في هذه السياسة كيفية جمع البيانات واستخدامها.
+            </p>
+            
+            <h5 class="card-title">جمع المعلومات</h5>
+            <p class="card-text">
+                عند استخدامك لموقعنا، قد نقوم بجمع بعض المعلومات مثل:
+            </p>
+            <ul class="card-text">
+                <li>المعلومات التي تقدمها عند التسجيل أو التعليق.</li>
+                <li>ملفات تعريف الارتباط (Cookies) لتحسين تجربة التصفح.</li>
+            </ul>
+            
+            <h5 class="card-title">استخدام المعلومات</h5>
+            <p class="card-text">
+                نستخدم المعلومات التي نجمعها من أجل:
+            </p>
+            <ul class="card-text">
+                <li>تحسين محتوى الموقع وتجربة المستخدم.</li>
+                <li>إرسال تحديثات حول الأخبار والمحتوى الجديد.</li>
+                <li>تحليل أداء الموقع وإجراء تحسينات.</li>
+            </ul>
+            
+            <h5 class="card-title">حماية البيانات</h5>
+            <p class="card-text">
+                نحن ملتزمون بحماية بيانات المستخدمين من الوصول غير المصرح به أو الاستخدام غير القانوني.
+            </p>
+            
+            <h5 class="card-title">ملفات تعريف الارتباط (Cookies)</h5>
+            <p class="card-text">
+                نستخدم ملفات تعريف الارتباط لتحسين تجربة التصفح، ويمكنك التحكم بها من خلال إعدادات المتصفح.
+            </p>
+
+            <h5 class="card-title">التعديلات على السياسة</h5>
+            <p class="card-text">
+                قد نقوم بتحديث سياسة الخصوصية من وقت لآخر، وسيتم نشر أي تغييرات على هذه الصفحة.
+            </p>
+            <h5 class="card-title mt-3">تواصل معنا</h5>
+            <p class="card-text">
+                إذا كان لديك أي استفسارات حول هذه السياسة، يمكنك التواصل معنا عبر البريد الإلكتروني:
+                <a href="mailto:info@ahlankora.com">info@ahlankora.com</a>
+            </p>
+        </div>
+    </div>
+</div>
+
+{% include 'footer.html' %}
+<script src="{% static 'js/popper.min.js' %}"></script>
+<script src="{% static 'js/bootstrap.min.js' %}"></script>
+</body>
+</html>

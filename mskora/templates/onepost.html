@@ -1,0 +1,288 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="{{ onepost.keywords }}">
+
+
+
+    <meta name="description" content="{{ onepost.content.html | striptags | truncatechars:160 }}">
+    <meta property="og:title" content="{{ onepost.title }}">
+    <meta property="og:description" content="{{ onepost.content.html | striptags | truncatechars:160 }}">
+    <meta property="og:image" content="{% if onepost.img %}{{ onepost.img.url }}{% else %}/static/images/default.png{% endif %}">
+    <meta property="og:url" content="{{ request.build_absolute_uri }}">
+    <meta property="og:type" content="article">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{{ onepost.title }}">
+    <meta name="twitter:description" content="{{ onepost.content.html | striptags | truncatechars:160 }}">
+    <meta name="twitter:image" content="{% if onepost.img %}{{ onepost.img.url }}{% else %}/static/images/default.png{% endif %}">
+    <meta name="author" content="{{ onepost.writer }}">
+    <meta name="robots" content="index, follow">
+    <script type="application/ld+json">
+        {
+          "@context": "https://schema.org",
+          "@type": "NewsArticle",
+          "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "{{ request.build_absolute_uri }}"
+          },
+          "headline": "{{ onepost.title }}",
+          "image": [
+            "{% if onepost.img %}{{ request.scheme }}://{{ request.get_host }}{{ onepost.img.url }}{% else %}{{ request.scheme }}://{{ request.get_host }}/static/default-image.jpg{% endif %}"
+          ],
+          "datePublished": "{{ onepost.publish_date|date:'c' }}",
+          "dateModified": "{{ onepost.publish_date|date:'c' }}",
+          "author": {
+            "@type": "Person",
+            "name": "{{ onepost.writer }}"
+          },
+          "publisher": {
+            "@type": "Organization",
+            "name": "AhlanKora",
+            "logo": {
+              "@type": "ImageObject",
+              "url": "{{ request.scheme }}://{{ request.get_host }}/static/img/logo.png"
+            }
+          },
+          "description": "{{ onepost.content.html | striptags | truncatechars:160 }}"
+        }
+    </script>
+        
+        
+    <title>{{ onepost.title }}</title>
+
+    <link rel="stylesheet" href="{% static 'css/bootstrap.rtl.min.css' %}">
+    <script src="{% static 'js/jquery-3.6.0.min.js' %}"></script>
+    <style>
+        h1 {
+            font-size: 2em;
+            line-height: 1.4;
+            margin-bottom: 20px;
+        }
+        h2 {
+            font-size: 30px;
+            line-height: 1.4;
+            margin-bottom: 10px;
+        }
+
+        h3 {
+            font-size: 25px;
+            line-height: 1.4;
+            margin-bottom: 10px;
+        }
+
+        p {
+            font-size: 20px;
+            line-height: 2;
+            margin-bottom: 15px;
+        }
+
+        .ad-column {
+            background-color: #f8f9fa;
+            text-align: center;
+            padding: 15px;
+            border: 1px solid #ddd;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        .content-column {
+            padding: 15px;
+        }
+        .card-img-bottom {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+        }
+        .img-caption {
+            text-align: center;
+            font-size: 14px;
+            color: #6c757d;
+            font-weight: bold;
+            margin-top: 5px;
+            }
+
+        .related-post-card {
+            height: 100%;
+            max-width: 100%;
+        }
+
+        .related-post-card img {
+            height: 150px;
+            object-fit: cover;
+        }
+
+        .related-post-card .card-body {
+            padding: 10px;
+        }
+
+        .related-post-card .card-title {
+            font-size: 16px;
+        }
+
+        .related-post-card .card-text {
+            font-size: 14px;
+        }
+        .custom-card {
+            position: relative;
+            text-decoration: none;
+        }
+
+        .custom-card .card-title {
+            padding: 1rem;
+            border-radius: 10px;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .custom-card:hover .card-title {
+            filter: brightness(70%);
+            color: gray;
+        }
+
+        .custom-card:hover img {
+            filter: brightness(70%);
+            transition: all 0.3s ease-in-out;
+        }
+
+        a {
+            text-decoration: none;
+            color: black;
+        }
+
+        a:hover {
+            color: gray;
+        }
+
+        .cs-card-img-top {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+        }
+
+    </style>
+    
+</head>
+<body>
+    {% include 'navbar.html' %}
+
+
+    <div class="container">
+        <div class="row justify-content-center">
+            
+            <div class="col-lg-8 content-column">
+                <div class="card">
+                    <div class="card-body">
+                        <h1 class="card-title">{{ onepost.title }}</h1>
+                        <p class="card-text">
+                            <small class="text-muted">{{ onepost.publish_date|date:"l d/m/Y" }}<br>{{ onepost.publish_date|date:"h:i A" }}</small>
+                        </p>
+
+
+                        <img src="{% if onepost.img %}{{ onepost.img.url }}{% else %}error{% endif %}" 
+                        class="card-img-bottom" 
+                        alt="{{ onepost.img_name }}" 
+                        loading="lazy">
+                   
+
+                        <p class="img-caption">{{ onepost.img_name }}</p>
+                        <p class="card-text">
+                            <small class="text-muted">{{ onepost.writer }}</small>
+                        </p>                        
+                        <p class="card-text">{{ onepost.content.html | safe }}</p>
+                        <a id="copyLinkButton" class="btn btn-success btn-sm mt-3">نسخ الرابط</a>
+                        <div class="d-flex justify-content-center">
+                            <!-- WhatsApp -->
+                            <a href="https://api.whatsapp.com/send?text={{ request.build_absolute_uri }}" 
+                               class="mx-2 text-decoration-none" target="_blank">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="#00BF16" class="bi bi-whatsapp" viewBox="0 0 16 16">
+                                    <path d="M13.601 2.326A7.85 7.85 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.9 7.9 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.9 7.9 0 0 0 13.6 2.326zM7.994 14.521a6.6 6.6 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.56 6.56 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592m3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.73.73 0 0 0-.529.247c-.182.198-.691.677-.691 1.654s.71 1.916.81 2.049c.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232"/>
+                                </svg>
+                            </a>
+                        
+                            <!-- Twitter -->
+                            <a href="https://twitter.com/intent/tweet?url={{ request.build_absolute_uri }}&text={{ onepost.title }}" 
+                               class="mx-2 text-decoration-none" target="_blank">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="#000000" class="bi bi-twitter-x" viewBox="0 0 16 16">
+                                    <path d="M12.6.75h2.454l-5.36 6.142L16 15.25h-4.937l-3.867-5.07-4.425 5.07H.316l5.733-6.57L0 .75h5.063l3.495 4.633L12.601.75Zm-.86 13.028h1.36L4.323 2.145H2.865z"/>
+                                </svg>
+                            </a>
+                        
+                            <!-- Facebook -->
+                            <a href="https://www.facebook.com/sharer/sharer.php?u={{ request.build_absolute_uri }}" 
+                               class="mx-2 text-decoration-none" target="_blank">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="#2056fd" class="bi bi-facebook" viewBox="0 0 16 16">
+                                    <path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951"/>
+                                </svg>
+                            </a>
+                        
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+
+    <div class="container mt-4">
+        <h3 class="text-center">مواضيع أخرى</h3>
+        <div class="row">
+            {% for post in related_posts %}
+                <div class="custom-card col-md-4 mb-4">
+                    <a href="{% url 'post' id=post.id slug=post.slug %}">
+                    <div class="card related-post-card">                        
+                        
+                        <img src="{% if post.img %}{{ post.img.url }}{% else %}error{% endif %}" 
+                        class="cs-card-img-top" 
+                        alt="{{ post.title }}" 
+                        loading="lazy"> 
+                        
+                        
+                        <div class="card-body">
+                            <h5 class="card-title">{{ post.title }}</h5>
+                        </div>
+                    </div>
+                    </a>
+                </div>
+            {% empty %}
+                <p class="text-center">لا توجد مواضيع أخرى</p>
+            {% endfor %}
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <script>
+
+        document.getElementById('copyLinkButton').addEventListener('click', function() {
+            const link = window.location.href;
+            navigator.clipboard.writeText(link).then(() => {
+                alert('تم نسخ الرابط بنجاح!');
+            }).catch(err => {
+                console.error('خطأ في نسخ الرابط:', err);
+            });
+        });
+
+
+    </script>
+    {% include 'footer.html' %}
+    <script src="{% static 'js/popper.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+</body>
+</html>

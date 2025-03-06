@@ -1,0 +1,374 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+  <head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="موقع ahlankora.com - أحدث الأخبار الرياضية ونتائج المباريات وتحليلات كرة القدم العالمية والعربية.">
+    <meta name="keywords" content="كرة القدم, ahlankora, مباريات اليوم, الدوري الإنجليزي, الدوري الإسباني, نتائج المباريات">
+    <meta name="author" content="ahlankora.com">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://ahlankora.com/">
+    <title>{% block title %}ahlankora | أهلاً كورة {% endblock %}</title>
+
+
+    <meta property="og:title" content="أخبار كرة القدم - AhlanKora">
+    <meta property="og:description" content="تابع آخر أخبار كرة القدم وأهم التحليلات على ahlankora.com.">
+    <meta property="og:image" content="https://ahlankora.com/static/images/logo.png">
+    <meta property="og:url" content="https://ahlankora.com/">
+    <meta property="og:type" content="website">
+
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="أخبار كرة القدم - AhlanKora">
+    <meta name="twitter:description" content="أحدث الأخبار الرياضية ونتائج المباريات لحظة بلحظة.">
+    <meta name="twitter:image" content="https://ahlankora.com/static/images/logo.png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    
+    <link rel="stylesheet" href="{% static 'css/bootstrap.rtl.min.css' %}">
+
+    <script src="{% static 'js/jquery-3.6.0.min.js' %}"></script>
+    
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "NewsMediaOrganization",
+        "name": "AhlanKora",
+        "url": "https://ahlankora.com/",
+        "logo": "https://ahlankora.com/static/images/logo.png",
+        "sameAs": [
+          "https://www.facebook.com/ahlankora",
+          "https://x.com/AhlanKora",
+          "https://www.instagram.com/ahlankora",
+          "https://www.threads.net/@ahlankora"
+        ]
+      }
+    </script>
+      
+    <style>
+      .custom-card {
+        position: relative;
+        text-decoration: none;
+      }
+    
+      .custom-card .card-title {
+        background: rgba(0, 0, 0, 0.6);
+        padding: 1rem;
+        border-radius: 10px;
+
+      }
+    
+      .custom-card:hover .card-title,
+      .custom-card:hover img {
+        filter: brightness(70%);
+        color: gray;
+        transition: all 0.3s ease-in-out;
+      }
+    
+      .custom-card:hover .card-title {
+        background: rgba(0, 0, 0, 0.8);
+      }
+      a {
+        text-decoration: none;
+        color: black;
+      }
+
+      a:hover {
+        color: gray;
+      }
+      .cs-card-img-top {
+        width: 100%;
+        height: 400px;
+        object-fit: cover;
+    }
+    </style>
+    
+  </head>
+  <body>
+
+
+{% include 'navbar.html' %}
+
+
+
+<div class="container my-5">
+  <div class="row gx-3 gy-4">
+<!-- small card right -->
+
+<div class="col-lg-3 col-md-4 col-sm-6">
+  {% if Card_right_small %}
+
+
+    <a href="{% url 'post' Card_right_small.id Card_right_small.slug %}">
+
+    <div class="card custom-card">
+      <img class="cs-card-img-top" src="{{ Card_right_small.img.url }}" alt="{{ Card_right_small.title }}">
+      <div class="card-body">
+        <p class="card-text">{{ Card_right_small.title}}</p>
+      </div>
+    </div>
+  </a>
+  {% else %}
+  <p>لا يوجد منشور</p>
+  {% endif %}
+</div>
+
+
+<!-- center card -->
+
+<div class="col-lg-6 col-md-8 col-sm-12">
+  {% if Card_center %}
+  <a href="{% url 'post' Card_center.id Card_center.slug %}">
+    <div class="card text-white custom-card">
+      <img class="card-img-top" src="{{ Card_center.img.url }}" alt="{{ Card_center.title }}">
+      <div class="card-img-overlay">
+        <h5 class="card-title">{{ Card_center.title }}</h5>
+      </div>
+    </div>
+  </a>
+  {% else %}
+  <p>لا يوجد منشور</p>
+  {% endif %}
+</div>
+
+
+
+
+
+<!-- small card left  -->
+
+<div class="col-lg-3 col-md-4 col-sm-6">
+
+  {% if Card_left_small %}
+  <a href="{% url 'post' Card_left_small.id Card_left_small.slug %}">
+    <div class="card custom-card">
+      <img class="cs-card-img-top" src="{{ Card_left_small.img.url }}" alt="{{ Card_left_small.title }}">
+      <div class="card-body">
+        <h5 class="card-text">{{ Card_left_small.title}}</h5>
+      </div>
+    </div>
+  </a>
+  {% else %}
+  <p>لا يوجد منشور</p>
+  {% endif %}
+</div>
+
+  </div>
+</div>
+
+<!-- card 1 2 3 -->
+<div class="container my-4">
+<div class="card-group">
+
+  <div class="card custom-card">
+    {% if Card_one %}
+  <a href="{% url 'post' Card_one.id Card_one.slug %}">
+    <img class="cs-card-img-top" src="{{ Card_one.img.url }}" alt="{{ Card_one.title }}">
+    <div class="card-body">
+      <h5 class="card-text">{{ Card_one.title|truncatechars:40 }}</h5>
+    </div>
+    <div class="card-footer">
+      <small class="text-muted">{{ Card_one.publish_date|date:"l d/m/Y" }}<br>{{ Card_one.publish_date|date:"h:i A" }}</small>
+    </div>
+  </a>
+    {% else %}
+    <p>لا يوجد منشور</p>
+    {% endif %}
+  </div>
+
+
+
+
+  <div class="card custom-card">
+    {% if Card_two %}
+  <a href="{% url 'post' Card_two.id Card_two.slug %}">
+    <img class="cs-card-img-top" src="{{ Card_two.img.url }}" alt="{{ Card_two.title }}" >
+    <div class="card-body">
+      <h5 class="card-text">{{ Card_two.title|truncatechars:40 }}</h5>
+    </div>
+    <div class="card-footer">
+      <small class="text-muted">{{ Card_two.publish_date|date:"l d/m/Y" }}<br>{{ Card_two.publish_date|date:"h:i A" }}</small>
+    </div>
+  </a>
+  {% else %}
+  <p>لا يوجد منشور</p>
+  {% endif %}
+  </div>
+
+
+
+  <div class="card custom-card">
+    {% if Card_three %}
+  <a href="{% url 'post' Card_three.id Card_three.slug %}">
+    <img class="cs-card-img-top" src="{{ Card_three.img.url }}" alt="{{ Card_three.title }}">
+    <div class="card-body">
+      <h5 class="card-text">{{ Card_three.title|truncatechars:40 }}</h5>
+    </div>
+    <div class="card-footer">
+      <small class="text-muted">{{ Card_three.publish_date|date:"l d/m/Y" }}<br>{{ Card_three.publish_date|date:"h:i A" }}</small>
+    </div>
+  </a>
+  {% else %}
+  <p>لا يوجد منشور</p>
+  {% endif %}
+  </div>
+
+
+
+
+</div>
+</div>
+
+
+
+<!-- master card -->
+<div class="container my-4">
+<div class="card custom-card">
+  {% if Card_Boss %}
+<a href="{% url 'post' Card_Boss.id Card_Boss.slug %}">
+  <div class="card-body">
+    <h5 class="card-text">{{ Card_Boss.title }}</h5>
+    <p class="card-text"><small class="text-muted">{{ Card_Boss.publish_date|date:"l d/m/Y" }}<br>{{ Card_Boss.publish_date|date:"h:i A" }}</small></p>
+  </div>
+  <img class="card-img-top" src="{{ Card_Boss.img.url }}" alt="{{ Card_Boss.title }}">
+</a>
+{% else %}
+<p>لا يوجد منشور</p>
+{% endif %}
+</div>
+</div>
+
+
+
+<!-- card 4 5 6 -->
+<div class="container my-4">
+<div class="card-group">
+  <div class="card custom-card">
+    {% if Card_four %}
+  <a href="{% url 'post' Card_four.id Card_four.slug %}">
+    <img class="cs-card-img-top" src="{{ Card_four.img.url }}" alt="{{ Card_four.title }}">
+    <div class="card-body">
+      <h5 class="card-text">{{ Card_four.title|truncatechars:40 }}</h5>
+    </div>
+    <div class="card-footer">
+      <small class="text-muted">{{ Card_four.publish_date|date:"l d/m/Y" }}<br>{{ Card_four.publish_date|date:"h:i A" }}</small>
+    </div>
+  </a>
+  {% else %}
+  <p>لا يوجد منشور</p>
+  {% endif %}
+  </div>
+
+
+  <div class="card custom-card">
+    {% if Card_five %}
+  <a href="{% url 'post' Card_five.id Card_five.slug %}">
+    <img class="cs-card-img-top" src="{{ Card_five.img.url }}" alt="{{ Card_five.title }}">
+    <div class="card-body">
+      <h5 class="card-text">{{ Card_five.title|truncatechars:40 }}</h5>
+    </div>
+    <div class="card-footer">
+      <small class="text-muted">{{ Card_five.publish_date|date:"l d/m/Y" }}<br>{{ Card_five.publish_date|date:"h:i A" }}</small>
+    </div>
+  </a>
+  {% else %}
+  <p>لا يوجد منشور</p>
+  {% endif %}
+  </div>
+
+
+
+
+  <div class="card custom-card">
+    {% if Card_sex %}
+  <a href="{% url 'post' Card_sex.id Card_sex.slug %}">
+    <img class="cs-card-img-top" src="{{ Card_sex.img.url }}" alt="{{ Card_sex.title }}">
+    <div class="card-body">
+      <h5 class="card-text">{{ Card_sex.title|truncatechars:40 }}</h5>
+    </div>
+    <div class="card-footer">
+      <small class="text-muted">{{ Card_sex.publish_date|date:"l d/m/Y" }}<br>{{ Card_sex.publish_date|date:"h:i A" }}</small>
+    </div>
+  </a>
+  {% else %}
+  <p>لا يوجد منشور</p>
+  {% endif %}
+  </div>
+</div>
+</div>
+
+
+<!-- card 7 8 9 -->
+<div class="container my-4">
+<div class="card-group">
+  <div class="card custom-card">
+    {% if Card_seven %}
+  <a href="{% url 'post' Card_seven.id Card_seven.slug %}">
+    <img class="cs-card-img-top" src="{{ Card_seven.img.url }}" alt="{{ Card_seven.title }}">
+    <div class="card-body">
+      <h5 class="card-text">{{ Card_seven.title|truncatechars:40 }}</h5>
+    </div>
+    <div class="card-footer">
+      <small class="text-muted">{{ Card_seven.publish_date|date:"l d/m/Y" }}<br>{{ Card_seven.publish_date|date:"h:i A" }}</small>
+    </div>
+  </a>
+  {% else %}
+  <p>لا يوجد منشور</p>
+  {% endif %}
+  </div>
+
+
+
+
+  <div class="card custom-card">
+    {% if Card_eight %}
+  <a href="{% url 'post' Card_eight.id Card_eight.slug %}">
+    <img class="cs-card-img-top" src="{{ Card_eight.img.url }}" alt="{{ Card_eight.title }}">
+    <div class="card-body">
+      <h5 class="card-text">{{ Card_eight.title|truncatechars:40 }}</h5>
+    </div>
+    <div class="card-footer">
+      <small class="text-muted">{{ Card_eight.publish_date|date:"l d/m/Y" }}<br>{{ Card_eight.publish_date|date:"h:i A" }}</small>
+    </div>
+  </a>
+  {% else %}
+  <p>لا يوجد منشور</p>
+  {% endif %}
+  </div>
+
+
+
+
+  <div class="card custom-card">
+    {% if Card_nine %}
+  <a href="{% url 'post' Card_nine.id Card_nine.slug %}">
+    <img class="cs-card-img-top" src="{{ Card_nine.img.url }}" alt="{{ Card_nine.title }}">
+    <div class="card-body">
+      <h5 class="card-text">{{ Card_nine.title|truncatechars:40 }}</h5>
+    </div>
+    <div class="card-footer">
+      <small class="text-muted">{{ Card_nine.publish_date|date:"l d/m/Y" }}<br>{{ Card_nine.publish_date|date:"h:i A" }}</small>
+    </div>
+    </a>
+    {% else %}
+    <p>لا يوجد منشور</p>
+    {% endif %}
+  </div>
+</div>
+</div>
+
+
+{% include 'footer.html' %}
+
+<script src="{% static 'js/popper.min.js' %}"></script>
+<script src="{% static 'js/bootstrap.min.js' %}"></script>
+
+
+  </body>
+</html>

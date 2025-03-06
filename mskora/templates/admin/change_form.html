@@ -1,0 +1,49 @@
+{% extends "admin/change_form.html" %}
+{% load static %}
+{% block extrahead %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'css/darcula.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/django_quill.css' %}">
+    <link rel="stylesheet" href="{% static 'css/quill.snow.css' %}">
+    <link rel="stylesheet" href="{% static 'css/resize.min.css' %}">
+    <script src="{% static 'js/django_quill.js' %}" ></script>
+    <script src="{% static 'js/quill.min.js' %}" ></script>
+
+    <script src="{% static 'js/highlight.min.js' %}" ></script>
+    <script src="{% static 'js/quill-resize-module.min.js' %}" ></script>
+    <script src="{% static 'js/quill.imageCompressor.min.js' %}" ></script>
+    <script>
+      const quill = new Quill('#editor', {
+        theme: 'snow'
+      });
+ 
+    </script>
+    <style>
+      /* ضبط ارتفاع منطقة Quill editor */
+      .ql-container {
+          width: 100%;
+          height: 350px; /* ارتفاع ثابت */
+          overflow-y: auto; /* إضافة شريط تمرير عند الحاجة */
+          direction: rtl; /* دعم الاتجاه من اليمين إلى اليسار */
+      }
+      .ql-toolbar {
+          width: 100%; /* عرض الشريط بنفس عرض المحرر */
+          border-bottom: 1px solid #ddd; /* فصل الأدوات عن المحرر بخط */
+          background-color: #f1f1f1; /* لون خلفية الشريط */
+          padding: 10px; /* مساحة داخلية */
+          border-radius: 8px 8px 0 0; /* زوايا مستديرة فقط للأعلى */
+
+      }
+      .ql-editor {
+        direction: rtl;
+        text-align: right;
+      }
+      .ql-tooltip {
+          left: 50% !important;
+          transform: translateX(-50%) !important;
+      }
+
+    </style>
+
+
+{% endblock %}

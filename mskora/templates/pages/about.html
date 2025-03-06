@@ -1,0 +1,110 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ar">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="تعرف على موقع أهلا كورة، المصدر الأول لأخبار كرة القدم، التحليلات الحصرية، وتغطية المباريات لحظة بلحظة.">
+    <meta name="keywords" content="أهلا كورة, من نحن, أخبار كرة القدم, تحليلات رياضية">
+    <meta name="author" content="AhlanKora.com">
+
+    <meta property="og:title" content="من نحن | أهلا كورة">
+    <meta property="og:description" content="تعرف على موقع أهلا كورة، المصدر الأول لأخبار كرة القدم، التحليلات الحصرية، وتغطية المباريات لحظة بلحظة.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://ahlankora.com/static/images/logo.png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.rtl.min.css' %}">
+    <script src="{% static 'js/jquery-3.6.0.min.js' %}"></script>
+    <title>about | من نحن</title>
+    <script type="application/ld+json">
+        {
+          "@context": "https://schema.org",
+          "@type": "AboutPage",
+          "name": "من نحن | أهلا كورة",
+          "description": "تعرف على موقع أهلا كورة، المصدر الأول لأخبار كرة القدم، التحليلات الحصرية، وتغطية المباريات لحظة بلحظة.",
+          "url": "{{ request.build_absolute_uri }}",
+          "publisher": {
+            "@type": "Organization",
+            "name": "أهلا كورة",
+            "url": "https://ahlankora.com",
+            "logo": {
+              "@type": "ImageObject",
+              "url": "https://ahlankora.com/static/images/logo.png"
+            },
+            "contactPoint": {
+              "@type": "ContactPoint",
+              "email": "info@ahlankora.com",
+              "contactType": "customer service",
+              "availableLanguage": ["Arabic", "English"]
+            },
+            "sameAs": [
+              "https://www.facebook.com/ahlankora",
+              "https://x.com/AhlanKora",
+              "https://www.instagram.com/ahlankora",
+              "https://www.threads.net/@ahlankora"
+            ]
+          }
+        }
+    </script>
+        
+    <style>
+        /* تعديل المسافات حول الكارد */
+        .card {
+            margin-top: 20px;
+            margin-bottom: 20px;
+            padding: 15px;
+        }
+
+        /* تعديل المسافات بين النص والعناوين */
+        .card-header {
+            font-size: 1.25rem;
+            padding: 10px 15px;
+        }
+
+        .card-body {
+            padding: 20px;
+        }
+
+        .card-title {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+
+        .card-text {
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
+{% include 'navbar.html' %}
+<div class="container">
+    <div class="card bg-dark text-white mb-3" style="max-width: 100%; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+        <div class="card-header">من نحن</div>
+        <div class="card-body">
+            <h5 class="card-title">مرحبًا بك في AhlanKora</h5>
+            <p class="card-text"></p>نحن في أهلا كورة ، نقدم لك أحدث الأخبار الرياضية ، التحليلات الحصرية ، النتائج المباشرة لجميع البطولات المحليه والعالمية.</p>
+            <P class="card-text">نهدف إلى أن نكون المصدر الأول لعشاق كرة القدم، عبر تقديم محتوى دقيق ومحدث على مدار الساعة.</P>
+            <h5 class="card-title">ما يميزنا؟</h5>
+            <ul class="card-text">
+                <li>تغطية فورية لأهم الأحداث الرياضية.</li>
+                <li>تحليلات حصرية لأداء الفرق واللاعبين.</li>
+                <li>نقل الأخبار من مصادر رسمية وموثوقة.</li>
+            </ul>
+        </div>
+        <h5 class="card-title mt-3">تواصل معنا</h5>
+        <p class="card-text">
+            يسعدنا تواصلكم معنا عبر البريد الإلكتروني: 
+            <a href="mailto:info@ahlankora.com">info@ahlankora.com</a>
+        </p>
+    </div>
+</div>
+{% include 'footer.html' %}
+<script src="{% static 'js/popper.min.js' %}"></script>
+<script src="{% static 'js/bootstrap.min.js' %}"></script>
+</body>
+</html>
